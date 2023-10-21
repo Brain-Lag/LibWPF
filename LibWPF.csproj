@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="Images\" />
-    <Folder Include="View\" />
   </ItemGroup>
 
 </Project>
