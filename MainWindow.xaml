@@ -5,70 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibWPF"
         mc:Ignorable="d"
-        Title="Book Galaxy" Height="1200" Width="1920"
-        MinHeight="900" MinWidth="960">
+        Title="Book Galaxy" Height="900" Width="1600"
+        MinHeight="900" MinWidth="960"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="4*"/>
-            <!--<RowDefinition Height="*"/>-->
         </Grid.RowDefinitions>
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>-->
         <DockPanel Background="#FFBA1919">
-            <TextBox Name="searchUser" HorizontalAlignment="Right"
-                     Width="200" Height="50" DockPanel.Dock="Right"
-                     Background="Wheat" Margin="0 0 50 0"
-                     FontSize="15pt" TextAlignment="Center">
-                <TextBox.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="20"/>
-                    </Style>
-                </TextBox.Resources>
-            </TextBox>
             <Label Content="Book Galaxy" FontSize="40pt"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center" FontFamily="Goudy Stout"
                       Foreground="Wheat"/>
-            <Button Name="Search" Width="100px" Height="50px" 
-                    HorizontalAlignment="Right" DockPanel.Dock="Right"
-                    Margin="0, 0, 50, 0" Background="Wheat"
-                    Click="SearchReader_Click">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="20"/>
-                    </Style>
-                </Button.Resources>
-                <Image Source="C:\Users\levch\source\repos\LibWPF\Images\Search.png"/>
-            </Button>
-            <Button Name="AddReader" Width="100px" Height="50px" 
-                    HorizontalAlignment="Right" DockPanel.Dock="Right"
-                    Margin="0, 0, 50, 0" Background="Wheat"
-                    Click="AddReader_Click">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="20"/>
-                    </Style>
-                </Button.Resources>
-                <Image Source="C:\Users\levch\source\repos\LibWPF\Images\AddUser.png"/>
-            </Button>
-            <Button Name="AddBook" Width="100px" Height="50px" 
-                    HorizontalAlignment="Right" DockPanel.Dock="Right"
-                    Margin="0, 0, 50, 0" Background="Wheat"
-                    Click="AddBook_Click">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="20"/>
-                    </Style>
-                </Button.Resources>
-                <Image Source="C:\Users\levch\source\repos\LibWPF\Images\AddBook.png" Width="40" Height="40"/>
-            </Button>
-
         </DockPanel>
-
 
         <TabControl
                     VerticalAlignment="Top"
@@ -76,61 +26,62 @@
                     Background="Gray">
             <TabItem FontSize="25pt" Foreground="Black" Header="читатели">
                 <StackPanel>
-                    <ListView FontSize="20pt" Name="ReadersList" VerticalAlignment="Bottom"
-                          SelectionChanged="ReaderList_SelectionChanged">
-                        <ListView.View>
-                            <GridView >
-                                <GridViewColumn Width="150" Header="Id" DisplayMemberBinding="{Binding Path=Id}"/>
-                                <GridViewColumn Width="400" Header="Name" DisplayMemberBinding="{Binding Path=Name}"/>
-                                <GridViewColumn Width="400" Header="Surname" DisplayMemberBinding="{Binding Path=Surname}"/>
-                                <GridViewColumn Width="250" Header="Books" DisplayMemberBinding="{Binding Path=Books}"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                    <DockPanel Background="White">
-                        <Label Width="300" FontSize="20pt">
-                            ID
-                        </Label>
-                        <TextBox Name="idText" HorizontalAlignment="Center"
+                    <StackPanel DataContext="{Binding SelectedUser}">
+                        <DockPanel>
+                            <Label HorizontalAlignment="Center">Добавить пользователя</Label>
+                        </DockPanel>
+                        <DockPanel Background="White">
+                            <Label Width="300" FontSize="20pt">
+                                ID
+                            </Label>
+                            <TextBox Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}"
+                                 HorizontalAlignment="Center"
                                  VerticalAlignment="Center" Height="30" Width="400"
                                  Margin="-300 0 0 0" FontSize="15pt"/>
-                    </DockPanel>
-                    <DockPanel Background="White">
-                        <Label Width="300">
-                            Имя
-                        </Label>
-                        <TextBox Name="nameText" HorizontalAlignment="Center"
+                        </DockPanel>
+                        <DockPanel Background="White">
+                            <Label Width="300">
+                                Имя
+                            </Label>
+                            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                                 HorizontalAlignment="Center"
                                  VerticalAlignment="Center" Height="30" Width="400"
                                  Margin="-300 0 0 0" FontSize="15pt"/>
-                    </DockPanel>
-                    <DockPanel Background="White">
-                        <Label Width="300">
-                            Фамилия
-                        </Label>
-                        <TextBox Name="surnameText" HorizontalAlignment="Center"
+                        </DockPanel>
+                        <DockPanel Background="White">
+                            <Label Width="300">
+                                Фамилия
+                            </Label>
+                            <TextBox Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}"
+                                 HorizontalAlignment="Center"
                                  VerticalAlignment="Center" Height="30" Width="400"
                                  Margin="-300 0 0 0" FontSize="15pt"/>
-                    </DockPanel>
-                    <DockPanel Background="White">
-                        <Label Width="300">
-                            Книги
-                        </Label>
-                        <TextBox Name="BooksText" HorizontalAlignment="Center"
+                        </DockPanel>
+                        <DockPanel Background="White">
+                            <Label Width="300">
+                                Книги
+                            </Label>
+                            <TextBox Text="{Binding UserBooks, UpdateSourceTrigger=PropertyChanged}"
+                                 HorizontalAlignment="Center"
                                  VerticalAlignment="Center" Height="30" Width="400"
                                  Margin="-300 0 0 0" FontSize="15pt"/>
-                    </DockPanel>
+                        </DockPanel>
+                    </StackPanel>
                     <DockPanel HorizontalAlignment="Center">
-                        <Button Name="RerideReader" Click="RerideReader_Click" Width="100"
-                                Height="50" Background="Wheat" Margin="0 0 50 0">
+                        <Button Name="AddReader" Width="100px" Height="50px" 
+                                HorizontalAlignment="Right"
+                                Margin="0, 0, 50, 0" Background="Wheat"
+                                Command="{Binding AddUserCommand}">
                             <Button.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="20"/>
                                 </Style>
                             </Button.Resources>
-                            <Image Source="C:\Users\levch\source\repos\LibWPF\Images\Reride.png"/>
+                            <Image Source="C:\Users\levch\source\repos\LibWPF\Images\AddUser.png"/>
                         </Button>
-                        <Button Name="DeleteReader" Click="DeleteReader_Click" Width="100"
-                                Height="50" Background="Wheat">
+                        <Button Name="DeleteReader" Command="{Binding RemoveUserCommand}" 
+                                CommandParameter="{Binding SelectedUser}" Width="100"
+                                Height="50" Background="Wheat" Margin="0 0 50 0">
                             <Button.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="20"/>
@@ -143,62 +94,62 @@
             </TabItem>
             <TabItem FontSize="25pt" Foreground="Black" Header="книги">
                 <StackPanel>
-                    <ListView Name="BooksList" VerticalAlignment="Bottom"
-                              SelectionChanged="BooksList_SelectionChanged"
-                              FontSize="20pt">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Width="350" Header="Author" DisplayMemberBinding="{Binding Path=Author}"/>
-                                <GridViewColumn Width="350" Header="Vendor Code" DisplayMemberBinding="{Binding Path=VendorCode}"/>
-                                <GridViewColumn Width="350" Header="Year" DisplayMemberBinding="{Binding Path=Year}"/>
-                                <GridViewColumn Width="350" Header="Amount" DisplayMemberBinding="{Binding Path=Amount}"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                    <DockPanel Background="White">
-                        <Label Width="300">
-                            Автор
-                        </Label>
-                        <TextBox Name="authorText" HorizontalAlignment="Center"
-                                 VerticalAlignment="Center" Height="30" Width="400"
-                                 Margin="-300 0 0 0" FontSize="15pt"/>
-                    </DockPanel>
-                    <DockPanel Background="White">
-                        <Label Width="300">
-                            Артикул
-                        </Label>
-                        <TextBox Name="vendorCodeText" HorizontalAlignment="Center"
-                                 VerticalAlignment="Center" Height="30" Width="400"
-                                 Margin="-300 0 0 0" FontSize="15pt"/>
-                    </DockPanel>
-                    <DockPanel Background="White">
-                        <Label Width="300">
-                            Год
-                        </Label>
-                        <TextBox Name="yearText" HorizontalAlignment="Center"
-                                 VerticalAlignment="Center" Height="30" Width="400"
-                                 Margin="-300 0 0 0" FontSize="15pt"/>
-                    </DockPanel>
-                    <DockPanel Background="White">
-                        <Label Width="300">
-                            Количество
-                        </Label>
-                        <TextBox Name="amountText" HorizontalAlignment="Center"
-                                 VerticalAlignment="Center" Height="30" Width="400"
-                                 Margin="-300 0 0 0" FontSize="15pt"/>
-                    </DockPanel>
+                    <StackPanel DataContext="{Binding SelectedBook}">
+                        <DockPanel>
+                            <Label HorizontalAlignment="Center">Добавить книгу</Label>
+                        </DockPanel>
+                        <DockPanel Background="White">
+                            <Label Width="300">
+                                Автор
+                            </Label>
+                            <TextBox Text="{Binding Author, UpdateSourceTrigger=PropertyChanged}"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center" Height="30" Width="400"
+                                     Margin="-300 0 0 0" FontSize="15pt"/>
+                        </DockPanel>
+                        <DockPanel Background="White">
+                            <Label Width="300">
+                                Артикул
+                            </Label>
+                            <TextBox Text="{Binding VendorCode, UpdateSourceTrigger=PropertyChanged}"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center" Height="30" Width="400"
+                                     Margin="-300 0 0 0" FontSize="15pt"/>
+                        </DockPanel>
+                        <DockPanel Background="White">
+                            <Label Width="300">
+                                Год
+                            </Label>
+                            <TextBox Text="{Binding Year, UpdateSourceTrigger=PropertyChanged}"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center" Height="30" Width="400"
+                                     Margin="-300 0 0 0" FontSize="15pt"/>
+                        </DockPanel>
+                        <DockPanel Background="White">
+                            <Label Width="300">
+                                Количество
+                            </Label>
+                            <TextBox Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center" Height="30" Width="400"
+                                     Margin="-300 0 0 0" FontSize="15pt"/>
+                        </DockPanel>
+                    </StackPanel>
                     <DockPanel HorizontalAlignment="Center">
-                        <Button Name="RerideBook" Click="RerideBook_Click" Width="100"
-                                Height="50" Background="Wheat" Margin="0 0 50 0">
+                        <Button Name="AddBook" Width="100px" Height="50px" 
+                                HorizontalAlignment="Right"
+                                Margin="0, 0, 50, 0" Background="Wheat"
+                                Command="{Binding AddBookCommand}">
                             <Button.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="20"/>
                                 </Style>
                             </Button.Resources>
-                            <Image Source="C:\Users\levch\source\repos\LibWPF\Images\Reride.png"/>
+                            <Image Source="C:\Users\levch\source\repos\LibWPF\Images\AddBook.png" Width="40" Height="40"/>
                         </Button>
-                        <Button Name="DeleteBook" Click="DeleteBook_Click" Width="100"
-                                Height="50" Background="Wheat">
+                        <Button Name="DeleteBook" Command="{Binding RemoveBookCommand}" 
+                                CommandParameter="{Binding SelectedBook}" Width="100"
+                                Height="50" Background="Wheat" Margin="0 0 50 0">
                             <Button.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="20"/>
@@ -212,27 +163,29 @@
             <TabItem FontSize="25pt" Foreground="Black" Header="выдать книгу">
                 <StackPanel Background="White">
                     <Label Content="Выдача книг читателю" HorizontalAlignment="Center"/>
-                    <ListView Name="ReadersAddList" FontSize="20pt">
+                    <ListView Name="ReadersAddList" ItemsSource="{Binding Users}" 
+                              SelectedItem="{Binding SelectedUser}" FontSize="20pt">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Width="150" Header="Id" DisplayMemberBinding="{Binding Path=Id}"/>
                                 <GridViewColumn Width="400" Header="Name" DisplayMemberBinding="{Binding Path=Name}"/>
                                 <GridViewColumn Width="400" Header="Surname" DisplayMemberBinding="{Binding Path=Surname}"/>
-                                <GridViewColumn Width="250" Header="Books" DisplayMemberBinding="{Binding Path=Books}"/>
+                                <GridViewColumn Width="250" Header="Books" DisplayMemberBinding="{Binding Path=UserBooks}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <ListView Name="BooksAddList" FontSize="20pt">
+                    <ListView Name="BooksAddList" ItemsSource="{Binding Books}" 
+                              SelectedItem="{Binding SelectedBook}" FontSize="20pt">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Width="350" Header="Author" DisplayMemberBinding="{Binding Path=Author}"/>
-                                <GridViewColumn Width="350" Header="Vendor Code" DisplayMemberBinding="{Binding Path=VendorCode}"/>
-                                <GridViewColumn Width="350" Header="Year" DisplayMemberBinding="{Binding Path=Year}"/>
-                                <GridViewColumn Width="350" Header="Amount" DisplayMemberBinding="{Binding Path=Amount}"/>
+                                <GridViewColumn Width="350" Header="Author" DisplayMemberBinding="{Binding Path=Author, UpdateSourceTrigger=PropertyChanged}"/>
+                                <GridViewColumn Width="350" Header="Vendor Code" DisplayMemberBinding="{Binding Path=VendorCode, UpdateSourceTrigger=PropertyChanged}"/>
+                                <GridViewColumn Width="350" Header="Year" DisplayMemberBinding="{Binding Path=Year, UpdateSourceTrigger=PropertyChanged}"/>
+                                <GridViewColumn Width="350" Header="Amount" DisplayMemberBinding="{Binding Path=Amount, UpdateSourceTrigger=PropertyChanged}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button Name="AddBookTo" Click="AddBookToUser" Width="100"
+                    <Button Name="AddBookTo" Command="{Binding AddBookToUserCommand}" Width="100"
                             Height="50" Background="White">
                         <Button.Resources>
                             <Style TargetType="Border">
